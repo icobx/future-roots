@@ -43,4 +43,5 @@
 #### Mesto udaje
 
 - polygony: https://www.geoportal.sk/sk/inspire/udaje-stiahnutie/
-- metadata: 
+- NDVI z roku
+  2021: https://data.bratislava.sk/maps/fbfb5d55e61f47c693ae87801aa284a2/explore?location=48.134384%2C17.112671%2C12.00
