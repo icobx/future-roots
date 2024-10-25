@@ -14,7 +14,7 @@
 
 *Prienik tychto vrstiev by mala byt plocha, kde sa mozu sadit stromy.*
 
-### Co potrebujeme pripravit
+### Co potrebujeme pripravit?
 
 - **frontend**, ktory bude schopny vizualizovat base mapu a vybrany set polygonov, interaktivne, idealne pridat drag and drop funkcionalitu, kde si moze user umiestnovat na mapu stromy prednastavenej velkosti (ale to je uz asi moc advanced)
 - jednoduchy **python backend (flask)**, ktory bude servovat obrazky frontendu
