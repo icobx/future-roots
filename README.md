@@ -20,7 +20,7 @@
 - jednoduchy **python backend (flask)**, ktory bude servovat obrazky frontendu
     - toto teoreticky nepotrebujeme, ak jedine co budeme posielat na frontend su tie mapy. Ak ale budeme chciet nieco len trochu dynamickejsie pocitat, bolo by fajn to mat
 
-#### Priprava dat pre vrstvy
+#### Priprava dat pre vrstvy!
 
 - **mestske pozemky** - toto by sme mali dostat od mesta
 - **mapa zelenych ploch** - musime pripravit
