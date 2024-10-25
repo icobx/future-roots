@@ -39,3 +39,8 @@
 
 #### Buffer okolo polygonov
 - [https://shapely.readthedocs.io/en/stable/manual.html#object.buffer](https://shapely.readthedocs.io/en/stable/manual.html#object.buffer)
+
+#### Mesto udaje
+
+- polygony: https://www.geoportal.sk/sk/inspire/udaje-stiahnutie/
+- metadata: 
