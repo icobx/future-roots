@@ -1,6 +1,6 @@
 padding_config = {
     'buildings': {
-        'budovy': 2.0,
+        'buildings': 2.0,
     },
     'utilities': {
         'kolektory': 1.0,
