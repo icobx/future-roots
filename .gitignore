@@ -4,7 +4,6 @@ dist
 app/data
 data/*
 !data/**/*.gitkeep
-!data/processed/ba/tileserver_config.json
 .idea
 .github
 .python-version

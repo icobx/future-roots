@@ -48,3 +48,4 @@
 
 
 - sudo tippecanoe --cluster-distance=200 --drop-densest-as-needed --extend-zooms-if-still-dropping -z16 -o ./data/tiles/trees.mbtiles ./data/geojsons/ba_trees.geojson --force
+- sudo tippecanoe -z16 -o ./data/tiles/properties.mbtiles ./data/geojsons/ba_property.geojson --force
