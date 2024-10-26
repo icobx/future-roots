@@ -4,19 +4,10 @@
 import subprocess
 import pathlib
 
-# Run a command, for example, 'ls' to list directory contents (on Unix)
-# result = subprocess.run(["ls", "-l"], capture_output=True, text=True)
+from config import PROJECT_ROOT
 
-# # Check if the command was successful
-# if result.returncode == 0:
-#     print("Command Output:")
-#     print(result.stdout)
-# else:
-#     print("Error:")
-#     print(result.stderr)
+# sudo docker run --rm -it -v $(pwd):/data -p 8080:8080 maptiler/tileserver-gl --config /data/tileserver_config.json
 
-# TODO: put this into config
-PROJECT_ROOT = pathlib.Path(__file__).resolve().parent.parent
 
 def run_subprocess(filename: str):
     input_path = PROJECT_ROOT / 'data' / 'geojsons' / f'{filename}.geojson'
@@ -48,7 +39,4 @@ def run_subprocess(filename: str):
 
     # return input_path
 
-
-# print(.exists())
-# print()
 run_subprocess('parcels_c_ruzinov')

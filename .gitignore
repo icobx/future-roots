@@ -10,3 +10,4 @@ venv
 .DS_Store
 api/__pycache__/
 playground/*
+api/__pycache__

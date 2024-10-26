@@ -1,5 +1,10 @@
+import pathlib
+
 import pandas as pd
 import geopandas as gpd
+
+PROJECT_ROOT = pathlib.Path(__file__).resolve().parent.parent
+
 
 padding_config = {
     'buildings': {
