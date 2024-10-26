@@ -1,4 +1,5 @@
-app/node_modules
+mapApp/node_modules
+mapApp/.vite
 dist
 app/data
 data/*
@@ -9,5 +10,7 @@ data/*
 venv
 .DS_Store
 api/__pycache__/
+__pycache__
+.vite
 playground/*
 api/__pycache__

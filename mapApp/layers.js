@@ -56,3 +56,14 @@ export const utilitiesLayer = new VectorTileLayer({
     style: config.layers.utilities.style
 });
 utilitiesLayer.set('name', 'utilities');
+
+export const resultLayer = new VectorTileLayer({
+    source: new VectorTileSource({
+        format: new MVT(),
+        url: config.layers.result.path + '/{z}/{x}/{y}.pbf', // replace with your tile server URL
+    }),
+    className: 'utilities',
+    minZoom: config.layers.result.minZoom,
+    style: config.layers.result.style
+});
+utilitiesLayer.set('name', 'utilities');
