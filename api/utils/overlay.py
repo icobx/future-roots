@@ -20,6 +20,9 @@ def overlay_layers(master_data, root, padding_config, layers):
         data = data.to_crs(epsg=4326)
         # Compute the difference
         master_data = gpd.overlay(df1=master_data, df2=data, how='difference')
+        if category_name == 'trees_not_over_utilities':
+            master_data = calculate_area_of_polygon_squared_meters(gdf=master_data, name_of_area_column='available_area_utility_trees_gone')
+    master_data = calculate_area_of_polygon_squared_meters(gdf=master_data, name_of_area_column='available_area_utility_trees_intact')
     return master_data
 
 
@@ -56,7 +59,8 @@ def add_buffer_column(gdf, buffer_df, category_name, padding_config):
             lookup_column = 'utility'
         elif category_name in ['other_green_areas']:
             lookup_column = 'TYP_ID'
-        elif category_name == 'trees':
+        elif category_name in ['trees_not_over_utilities', 'trees_over_utilities']:
+            category_name = 'trees'
             bins = [0, 4, 10, 100]
             labels = ['0_4m', '4_10m', '10_100m']
             gdf['binned'] = pd.cut(gdf['VYSKA_7'], bins=bins, labels=labels)
@@ -69,4 +73,10 @@ def add_buffer_column(gdf, buffer_df, category_name, padding_config):
         mapping_df = pd.DataFrame.from_dict(mapping_dict, orient='index').reset_index()
         mapping_df = mapping_df.rename({'index': lookup_column, 0: 'buffer'}, axis=1)
         gdf = pd.merge(left=gdf, right=mapping_df, how='left', on=[lookup_column]).fillna(1.0)
+    return gdf
+
+
+def calculate_area_of_polygon_squared_meters(gdf, name_of_area_column='area'):
+    new_crs = gdf.to_crs(epsg=6933)
+    gdf[name_of_area_column] = new_crs.area
     return gdf
