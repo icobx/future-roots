@@ -1,3 +1,4 @@
+import pandas as pd
 import geopandas as gpd
 import os
 
@@ -7,13 +8,14 @@ def overlay_layers(master_data, root, padding_config, layers):
     This function reads a layer, applies row-wise padding, and computes the difference between
     master_data and current layer.
     We iterate over all available layers currently and store just the final result."""
-    for layer in layers:
+    for category_name, layer in layers:
+        print(category_name)
         data = gpd.read_file(os.path.join(root, f'{layer}.geojson'))
-        # After Laco is finished, replace below with data['buffer_distance'] = assign_padding(data, padding_config)
-        data['buffer_distance'] = 1.0
+        buffer_df = apply_buffer_from_config(padding_config=padding_config)
+        data = add_buffer_column(gdf=data, buffer_df=buffer_df, category_name=category_name)
         # Switch to 6933 to be able to compute buffers
         data = data.to_crs(epsg=6933)
-        data['geometry'] = data.apply(lambda row: row.geometry.buffer(row['buffer_distance']), axis=1)
+        data['geometry'] = data.apply(lambda row: row.geometry.buffer(row['buffer']), axis=1)
         # Switch back to the right EPSG
         data = data.to_crs(epsg=4326)
         # Compute the difference
@@ -21,7 +23,7 @@ def overlay_layers(master_data, root, padding_config, layers):
     return master_data
 
 
-def apply_buffer_from_config(config):
+def apply_buffer_from_config(padding_config):
     # Create list to store data in the specified format
     data = []
 
@@ -52,8 +54,13 @@ def add_buffer_column(gdf, buffer_df, category_name):
         # For categories requiring lookups on 'TYP_ID' or 'utility' column
         if category_name == 'utilities':
             lookup_column = 'utility'
-        elif category_name in ['other_green_areas', 'trees']:
+        elif category_name in ['other_green_areas']:
             lookup_column = 'TYP_ID'
+        elif category_name == 'trees':
+            bins = [0, 4, 10, 100]
+            labels = ['0_4m', '4_10m', '10_100m']
+            gdf['binned'] = pd.cut(gdf['VYSKA_7'], bins=bins, labels=labels)
+            lookup_column = 'binned'
         else:
             raise ValueError("Invalid category name for buffer assignment.")
 

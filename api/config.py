@@ -17,10 +17,10 @@ padding_config = {
         'vodovody': 2,
     },
     'other_green_areas': {
-        'stromy': 4.0,
+        'zahon': 1.0,
         'kriky': 1.0,
-        'zive_ploty': 1.0,
-        'skupiny_stromov': 1.0,
+        'zivy_plot': 1.0,
+        'skupina_stromov': 1.0,
         'ina_plocha_zelene': 1.0,
     },
     'roads': {
