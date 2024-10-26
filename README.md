@@ -45,3 +45,6 @@
 - polygony: https://www.geoportal.sk/sk/inspire/udaje-stiahnutie/
 - NDVI z roku
   2021: https://data.bratislava.sk/maps/fbfb5d55e61f47c693ae87801aa284a2/explore?location=48.134384%2C17.112671%2C12.00
+
+
+- sudo tippecanoe --cluster-distance=200 --drop-densest-as-needed --extend-zooms-if-still-dropping -z16 -o ./data/tiles/trees.mbtiles ./data/geojsons/ba_trees.geojson --force
