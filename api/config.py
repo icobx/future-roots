@@ -18,7 +18,7 @@ padding_config = {
     },
     'other_green_areas': {
         'zahon': 0.01,
-        'kriky': 1.0,
+        'kriky': 0.01,
         'zivy_plot': 0.01,
         'skupina_stromov': 5.0,
         'ina_plocha_zelene': 1.0,
