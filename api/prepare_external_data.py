@@ -42,16 +42,16 @@ if __name__ == '__main__':
 
     print('Preprocessing roads...')
     roads = process_gpkg('../data/raw/INSPIRE_TN.gpkg')
-    roads.to_file('../data/processed/all/roads.geojson', driver='GeoJSON')
+    roads.to_file('../data/processed/roads.geojson', driver='GeoJSON')
 
     print('Preprocessing buildings...')
     buildings = process_gpkg('../data/raw/INSPIRE_BU.gpkg')
-    buildings.to_file('../data/processed/all/buildings.geojson', driver='GeoJSON')
+    buildings.to_file('../data/processed/buildings.geojson', driver='GeoJSON')
 
     print('Preprocessing parcels C...')
     parcels_c = process_gml('../data/raw/BratislavskyC')
-    parcels_c.to_file('../data/processed/ba/parcels_c.geojson', driver='GeoJSON')
+    parcels_c.to_file('../data/processed/parcels_c.geojson', driver='GeoJSON')
 
     print('Preprocessing parcels E...')
     parcels_e = process_gml('../data/raw/BratislavskyE')
-    parcels_e.to_file('../data/processed/ba/parcels_e.geojson', driver='GeoJSON')
+    parcels_e.to_file('../data/processed/parcels_e.geojson', driver='GeoJSON')
