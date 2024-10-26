@@ -3,8 +3,15 @@ import pathlib
 import pandas as pd
 import geopandas as gpd
 
+from enum import Enum
+
 PROJECT_ROOT = pathlib.Path(__file__).resolve().parent.parent
 
+class Status(Enum):
+    STARTED = "started"
+    RUNNING = "running"
+    COMPLETED = "completed"
+    FAILED = "failed"
 
 padding_config = {
     'buildings': {

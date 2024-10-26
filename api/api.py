@@ -5,6 +5,9 @@ import asyncio
 from fastapi import FastAPI, Request, BackgroundTasks
 from fastapi.middleware.cors import CORSMiddleware
 
+from .subprocesses import run_tc_subprocess
+from .config import Status
+
 app = FastAPI()
 
 app.add_middleware(
@@ -15,7 +18,7 @@ app.add_middleware(
     allow_headers=["*"],  # Allows all headers
 )
 
-task_status = {}
+process_status = {}
 
 @app.post("/compute-layers/")
 async def create_item(request: Request, background_tasks: BackgroundTasks):
@@ -23,29 +26,30 @@ async def create_item(request: Request, background_tasks: BackgroundTasks):
     # Process the data as needed
     task_id = str(uuid.uuid4())
 
-    background_tasks.add_task(long_running_task, task_id, data)
+    background_tasks.add_task(run_tc_subprocess, 'parcels_c_ruzinov', process_status)
 
     return {"computation_task_id": task_id, "status": "Computation task started."}
 
 @app.get("/task-status/{task_id}")
 async def get_task_status(task_id: str):
     # Return the current status of the task
-    status = task_status.get(task_id, "Task not found")
-    return {"task_id": task_id, "status": status}
+    status, message = process_status.get(task_id, (Status.FAILED, f"Task {task_id} not found"))
 
-async def long_running_task(task_id: str, data: dict):
-    try:
-        # Simulate long processing with multiple stages
-        for i in range(3):
-            await asyncio.sleep(5)  # Simulate work
-            task_status[task_id] = f"In progress: stage {i + 1}/3"
+    return {"task_id": task_id, "status": status, 'message': message}
+
+# async def long_running_task(task_id: str, data: dict):
+#     try:
+#         # Simulate long processing with multiple stages
+#         for i in range(3):
+#             await asyncio.sleep(5)  # Simulate work
+#             process_status[task_id] = f"In progress: stage {i + 1}/3"
         
-        # Mark task as completed
-        task_status[task_id] = "Completed"
+#         # Mark task as completed
+#         process_status[task_id] = "Completed"
     
-    except Exception as e:
-        # In case of error, set task status to failed
-        task_status[task_id] = f"Failed: {str(e)}"
+#     except Exception as e:
+#         # In case of error, set task status to failed
+#         process_status[task_id] = f"Failed: {str(e)}"
 
 
 

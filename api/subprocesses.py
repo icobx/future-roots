@@ -1,24 +1,23 @@
+import asyncio
+
+from .config import PROJECT_ROOT, Status
 
 # sudo tippecanoe -z16 -o ./data/result.mbtiles ./data/processed/overlay_result4.geojson --force
-
-import subprocess
-import pathlib
-
-from config import PROJECT_ROOT
-
 # sudo docker run --rm -it -v $(pwd):/data -p 8080:8080 maptiler/tileserver-gl --config /data/tileserver_config.json
 
+async def run_tc_subprocess(filename: str, process_status: dict[tuple[Status | str]]):
+    process_status[filename] = (Status.STARTED, '')
 
-def run_subprocess(filename: str):
     input_path = PROJECT_ROOT / 'data' / 'geojsons' / f'{filename}.geojson'
 
     if not input_path.exists():
-        raise FileNotFoundError(f'Geojson on path {input_path} does not exist.')
-
+        process_status[filename] = (Status.FAILED, f'Geojson on path {input_path} does not exist.')
+        return 
+    
     output_path = PROJECT_ROOT / 'data' / 'tiles' / f'{filename}.mbtiles'
 
     command = [
-        "sudo",
+        # "sudo",
         "tippecanoe",
         "-z16",
         "-o",
@@ -27,16 +26,23 @@ def run_subprocess(filename: str):
         "--force"
     ]
 
-    subprocess_result = subprocess.run(command, capture_output=True, text=True)
+    process = await asyncio.create_subprocess_exec(
+        *command,
+        stdout=asyncio.subprocess.PIPE,
+        stderr=asyncio.subprocess.PIPE
+    )
 
+    while process.returncode is None:
+        process_status[filename] = (Status.RUNNING, '')
+        await asyncio.sleep(2)
 
-    if subprocess_result.returncode == 0:
-        print("Command Output:")
-        print(subprocess_result.stdout)
+    _, stderr = await process.communicate()
+    if process.returncode == 0:
+        process_status[filename] = (Status.COMPLETED, f'Tiles for task {filename} calculated.')
     else:
-        print("Error:")
-        print(subprocess_result.stderr)
+        process_status[filename] = (Status.FAILED, stderr.decode())
 
-    # return input_path
-
-run_subprocess('parcels_c_ruzinov')
+    return output_path
+# asyncio.cre
+# print(asyncio.run(run_tc_subprocess('parcels_c_ruzinov', {})))
+# await run_subprocess('parcels_c_ruzinov')
