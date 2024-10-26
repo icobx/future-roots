@@ -22,7 +22,7 @@ def overlay_layers(master_data, root, padding_config, layers):
         master_data = gpd.overlay(df1=master_data, df2=data, how='difference')
         if category_name == 'trees_not_over_utilities':
             master_data = calculate_area_of_polygon_squared_meters(gdf=master_data, name_of_area_column='available_area_utility_trees_gone')
-    master_data = calculate_area_of_polygon_squared_meters(gdf=master_data, name_of_area_column='available_area_squared_m_utility_trees_intact')
+    master_data = calculate_area_of_polygon_squared_meters(gdf=master_data, name_of_area_column='available_area_utility_trees_intact')
     return master_data
 
 
