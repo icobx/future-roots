@@ -12,7 +12,7 @@ def overlay_layers(master_data, root, padding_config, layers):
         print(category_name)
         data = gpd.read_file(os.path.join(root, f'{layer}.geojson'))
         buffer_df = apply_buffer_from_config(padding_config=padding_config)
-        data = add_buffer_column(gdf=data, buffer_df=buffer_df, category_name=category_name)
+        data = add_buffer_column(gdf=data, buffer_df=buffer_df, category_name=category_name, padding_config=padding_config)
         # Switch to 6933 to be able to compute buffers
         data = data.to_crs(epsg=6933)
         data['geometry'] = data.apply(lambda row: row.geometry.buffer(row['buffer']), axis=1)
@@ -44,7 +44,7 @@ def apply_buffer_from_config(padding_config):
     return df
 
 
-def add_buffer_column(gdf, buffer_df, category_name):
+def add_buffer_column(gdf, buffer_df, category_name, padding_config):
     # Determine whether this category is straightforward (buildings, roads, pavements) or needs lookup
     if category_name in ['buildings', 'roads', 'pavements']:
         # Directly match on the category name for straightforward cases
@@ -65,6 +65,8 @@ def add_buffer_column(gdf, buffer_df, category_name):
             raise ValueError("Invalid category name for buffer assignment.")
 
         # Create buffer values by joining based on specific formatted keys from buffer_df
-        gdf['buffer'] = gdf[lookup_column].apply(lambda x: buffer_df.loc[buffer_df['Category'] == f"{category_name}_{x}", 'Buffer_Value'].values[0] if f"{category_name}_{x}" in buffer_df['Category'].values else None)
-
+        mapping_dict = padding_config[category_name]
+        mapping_df = pd.DataFrame.from_dict(mapping_dict, orient='index').reset_index()
+        mapping_df = mapping_df.rename({'index': lookup_column, 0: 'buffer'}, axis=1)
+        gdf = pd.merge(left=gdf, right=mapping_df, how='left', on=[lookup_column]).fillna(1.0)
     return gdf
