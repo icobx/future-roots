@@ -12,8 +12,8 @@ if __name__ == '__main__':
     parcels_e = gpd.read_file('../data/processed/parcels_e.geojson')
 
     print('Clipping roads...')
-    buildings_clipped = clip_polygons(roads, polygon_mask)
-    buildings_clipped.to_file('../data/processed/ba/roads.geojson', driver='GeoJSON')
+    roads_clipped = clip_polygons(roads, polygon_mask)
+    roads_clipped.to_file('../data/processed/ba/roads.geojson', driver='GeoJSON')
 
     print('Clipping buildings...')
     buildings_clipped = clip_polygons(buildings, polygon_mask)
