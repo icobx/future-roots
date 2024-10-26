@@ -18,7 +18,6 @@ export const parcelsLayer = new VectorTileLayer({
         format: new MVT(),
         url: config.layers.parcels.path + '/{z}/{x}/{y}.pbf', // replace with your tile server URL
     }),
-    className: 'parcels',
     minZoom: config.layers.parcels.minZoom,
     style: config.layers.parcels.style
 });
@@ -29,18 +28,46 @@ export const roadsLayer = new VectorTileLayer({
         format: new MVT(),
         url: config.layers.roads.path + '/{z}/{x}/{y}.pbf', // replace with your tile server URL
     }),
-    className: 'roads',
     minZoom: config.layers.roads.minZoom,
     style: config.layers.roads.style
 });
 roadsLayer.set('name', 'roads');
+
+export const pavementsLayer = new VectorTileLayer({
+    source: new VectorTileSource({
+        format: new MVT(),
+        url: config.layers.pavements.path + '/{z}/{x}/{y}.pbf', // replace with your tile server URL
+    }),
+    minZoom: config.layers.pavements.minZoom,
+    style: config.layers.pavements.style
+});
+pavementsLayer.set('name', 'pavements');
+
+export const propertiesLayer = new VectorTileLayer({
+    source: new VectorTileSource({
+        format: new MVT(),
+        url: config.layers.properties.path + '/{z}/{x}/{y}.pbf', // replace with your tile server URL
+    }),
+    minZoom: config.layers.properties.minZoom,
+    style: config.layers.properties.style
+});
+propertiesLayer.set('name', 'properties');
+
+export const treesLayer = new VectorTileLayer({
+    source: new VectorTileSource({
+        format: new MVT(),
+        url: config.layers.trees.path + '/{z}/{x}/{y}.pbf', // replace with your tile server URL
+    }),
+    minZoom: config.layers.trees.minZoom,
+    style: config.layers.trees.style
+});
+treesLayer.set('name', 'trees');
 
 export const greenAreasLayer = new VectorTileLayer({
     source: new VectorTileSource({
         format: new MVT(),
         url: config.layers.greenAreas.path + '/{z}/{x}/{y}.pbf', // replace with your tile server URL
     }),
-    className: 'greenAreas',
     minZoom: config.layers.greenAreas.minZoom,
     style: config.layers.greenAreas.style
 });
@@ -51,7 +78,6 @@ export const utilitiesLayer = new VectorTileLayer({
         format: new MVT(),
         url: config.layers.utilities.path + '/{z}/{x}/{y}.pbf', // replace with your tile server URL
     }),
-    className: 'utilities',
     minZoom: config.layers.utilities.minZoom,
     style: config.layers.utilities.style
 });
@@ -62,8 +88,7 @@ export const resultLayer = new VectorTileLayer({
         format: new MVT(),
         url: config.layers.result.path + '/{z}/{x}/{y}.pbf', // replace with your tile server URL
     }),
-    className: 'utilities',
     minZoom: config.layers.result.minZoom,
     style: config.layers.result.style
 });
-utilitiesLayer.set('name', 'utilities');
+resultLayer.set('name', 'result');

@@ -10,23 +10,39 @@
 <div id="map"></div>
 <div id="legend">
     <div class="input-group">
-        <input type="checkbox" id="buildings" name="buildings" value="Buildings" onClick="toggleVisibility(this,'buildings');" checked/>
+        <input type="checkbox" id="buildings" onClick="toggleVisibility(this,'buildings');" checked/>
         <label for="buildings">Buildings</label>
     </div>
     <div class="input-group">
-        <input type="checkbox" id="roads" name="roads" value="Roads" onClick="toggleVisibility(this,'roads');" checked/>
+        <input type="checkbox" id="parcels" onClick="toggleVisibility(this,'parcels');"/>
+        <label for="parcels">Parcels</label>
+    </div>
+    <div class="input-group">
+        <input type="checkbox" id="roads" onClick="toggleVisibility(this,'roads');" checked/>
         <label for="roads">Roads</label>
     </div>
     <div class="input-group">
-        <input type="checkbox" id="greenAreas" name="greenAreas" value="Green Areas" onClick="toggleVisibility(this,'greenAreas');" checked/>
+        <input type="checkbox" id="pavements" onClick="toggleVisibility(this,'pavements');" checked/>
+        <label for="pavements">Pavements</label>
+    </div>
+    <div class="input-group">
+        <input type="checkbox" id="properties" onClick="toggleVisibility(this,'properties');"/>
+        <label for="properties">Properties</label>
+    </div>
+    <div class="input-group">
+        <input type="checkbox" id="trees" onClick="toggleVisibility(this,'trees');" checked/>
+        <label for="trees">Trees</label>
+    </div>
+    <div class="input-group">
+        <input type="checkbox" id="greenAreas" onClick="toggleVisibility(this,'greenAreas');" checked/>
         <label for="greenAreas">Green Areas</label>
     </div>
     <div class="input-group">
-        <input type="checkbox" id="utilities" name="utilities" value="Utilities" onClick="toggleVisibility(this,'utilities');" checked/>
+        <input type="checkbox" id="utilities" onClick="toggleVisibility(this,'utilities');"/>
         <label for="utilities">Utilities</label>
     </div>
     <div class="input-group">
-        <input type="checkbox" id="result" name="result" value="Result" onClick="toggleVisibility(this,'result');" checked/>
+        <input type="checkbox" id="result" onClick="toggleVisibility(this,'result');" checked/>
         <label for="result">Result</label>
     </div>
 </div>

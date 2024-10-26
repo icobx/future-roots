@@ -1,0 +1,31 @@
+{
+  "data": {
+    "buildings": {
+      "mbtiles": "buildings.mbtiles"
+    },
+    "parcels": {
+      "mbtiles": "parcels_c.mbtiles"
+    },
+    "roads": {
+      "mbtiles": "roads.mbtiles"
+    },
+    "pavements": {
+      "mbtiles": "pavements.mbtiles"
+    },
+    "properties": {
+      "mbtiles": "properties.mbtiles"
+    },
+    "trees": {
+      "mbtiles": "trees.mbtiles"
+    },
+    "greenAreas": {
+      "mbtiles": "greenAreas.mbtiles"
+    },
+    "utilities": {
+      "mbtiles": "utilities.mbtiles"
+    },
+    "result": {
+      "mbtiles": "roads.mbtiles"
+    }
+  }
+}

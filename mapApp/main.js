@@ -4,7 +4,15 @@ import TileLayer from 'ol/layer/Tile';
 import OSM from 'ol/source/OSM';
 import {transform} from 'ol/proj';
 
-import {buildingsLayer, parcelsLayer, roadsLayer, greenAreasLayer, utilitiesLayer, resultLayer} from './layers';
+import {
+    buildingsLayer,
+    parcelsLayer,
+    roadsLayer,
+    greenAreasLayer,
+    utilitiesLayer,
+    resultLayer,
+    pavementsLayer, propertiesLayer, treesLayer
+} from './layers';
 
 const center = [17.153015431601077, 48.162629353115584]
 const sourceProjection = 'EPSG:4326';
@@ -22,11 +30,14 @@ const map = new Map({
             source: new OSM()
         }),
         buildingsLayer,
+        parcelsLayer,
         roadsLayer,
-        utilitiesLayer,
+        pavementsLayer,
+        propertiesLayer,
+        treesLayer,
         greenAreasLayer,
-        resultLayer
-        // parcelsLayer
+        utilitiesLayer,
+        resultLayer,
     ],
     view: new View({
         center: reprojectedCenter,
