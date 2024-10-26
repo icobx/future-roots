@@ -26,7 +26,7 @@ export const config = {
             "path": "http://localhost:8080/data/pavements",
             "minZoom": 14,
             "style": {
-                "stroke-color": "rgba(0, 0, 0, 1)"
+                "stroke-color": "rgba(0, 0, 0, 0.7)"
             }
         },
         "properties": {

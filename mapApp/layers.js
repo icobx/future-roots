@@ -2,6 +2,13 @@ import VectorTileLayer from "ol/layer/VectorTile";
 import VectorTileSource from "ol/source/VectorTile";
 import MVT from "ol/format/MVT";
 import {config} from "./app.config";
+import TileLayer from "ol/layer/Tile";
+import OSM from "ol/source/OSM";
+
+export const baseLayer =  new TileLayer({
+        source: new OSM()
+    })
+baseLayer.set('name', 'base');
 
 export const buildingsLayer = new VectorTileLayer({
     source: new VectorTileSource({

@@ -10,11 +10,15 @@
 <div id="map"></div>
 <div id="legend">
     <div class="input-group">
+        <input type="checkbox" id="base" onClick="toggleVisibility(this,'base');" checked/>
+        <label for="base">Base Layer</label>
+    </div>
+    <div class="input-group">
         <input type="checkbox" id="buildings" onClick="toggleVisibility(this,'buildings');" checked/>
         <label for="buildings">Buildings</label>
     </div>
     <div class="input-group">
-        <input type="checkbox" id="parcels" onClick="toggleVisibility(this,'parcels');"/>
+        <input type="checkbox" id="parcels" onClick="toggleVisibility(this,'parcels');" checked/>
         <label for="parcels">Parcels</label>
     </div>
     <div class="input-group">
@@ -26,7 +30,7 @@
         <label for="pavements">Pavements</label>
     </div>
     <div class="input-group">
-        <input type="checkbox" id="properties" onClick="toggleVisibility(this,'properties');"/>
+        <input type="checkbox" id="properties" onClick="toggleVisibility(this,'properties');" checked/>
         <label for="properties">Properties</label>
     </div>
     <div class="input-group">
@@ -38,7 +42,7 @@
         <label for="greenAreas">Green Areas</label>
     </div>
     <div class="input-group">
-        <input type="checkbox" id="utilities" onClick="toggleVisibility(this,'utilities');"/>
+        <input type="checkbox" id="utilities" onClick="toggleVisibility(this,'utilities');" checked/>
         <label for="utilities">Utilities</label>
     </div>
     <div class="input-group">

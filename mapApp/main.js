@@ -11,7 +11,7 @@ import {
     greenAreasLayer,
     utilitiesLayer,
     resultLayer,
-    pavementsLayer, propertiesLayer, treesLayer
+    pavementsLayer, propertiesLayer, treesLayer, baseLayer
 } from './layers';
 
 const center = [17.153015431601077, 48.162629353115584]
@@ -26,9 +26,7 @@ const reprojectedCenter = transform(
 const map = new Map({
     target: 'map',
     layers: [
-        new TileLayer({
-            source: new OSM()
-        }),
+        baseLayer,
         buildingsLayer,
         parcelsLayer,
         roadsLayer,
