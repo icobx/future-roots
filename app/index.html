@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+<!-- <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8"/>
@@ -7,8 +7,227 @@
     <title>Using OpenLayers with Vite</title>
 </head>
 <body>
-<div id="map"></div>
-<div id="layer-list"></div>
-<script src="./main.js" type="module"></script>
+    <div id="map"></div>
+    <div id="layer-list"></div>
+    <script src="./main.js" type="module"></script>
+</body>
+</html> -->
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>HTMX Simple Form</title>
+  <!-- Bootstrap CSS (optional for styling) -->
+  <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+  <!-- HTMX -->
+  <script src="https://unpkg.com/htmx.org@1.8.1"></script>
+</head>
+<body>
+
+    <div class="container mt-5">
+        <h2 class="text-center mb-4">Configuration Form</h2>
+        
+        <form id="configForm">
+          
+          <!-- Buildings Group -->
+          <h4>Buildings</h4>
+          <div class="form-row mb-3">
+            <div class="col">
+              <label for="buildings-structures">Structures</label>
+              <input type="number" class="form-control" id="buildings-structures" name="buildings[budovy]" value="2.0" required>
+            </div>
+          </div>
+      
+          <!-- Utilities Group -->
+          <h4>Utilities</h4>
+          <div class="form-row mb-3">
+            <div class="col">
+              <label for="utilities-collectors">Collectors</label>
+              <input type="number" class="form-control" id="utilities-collectors" name="utilities[kolektory]" value="1.0" required>
+            </div>
+            <div class="col">
+              <label for="utilities-product_pipeline">Product Pipeline</label>
+              <input type="number" class="form-control" id="utilities-product_pipeline" name="utilities[produktovod]" value="1.0" required>
+            </div>
+            <div class="col">
+              <label for="utilities-pipeline_elements">Pipeline Elements</label>
+              <input type="number" class="form-control" id="utilities-pipeline_elements" name="utilities[produktovody_prvky]" value="1.0" required>
+            </div>
+            <div class="col">
+              <label for="utilities-electricity_elements">Electricity Elements</label>
+              <input type="number" class="form-control" id="utilities-electricity_elements" name="utilities[prvky_elektriny]" value="1.0" required>
+            </div>
+            <div class="col">
+              <label for="utilities-product_pipeline_elements">Product Pipeline Elements</label>
+              <input type="number" class="form-control" id="utilities-product_pipeline_elements" name="utilities[prvky_produktovodov]" value="1.0" required>
+            </div>
+            <div class="col">
+              <label for="utilities-telecom_elements">Telecommunication Elements</label>
+              <input type="number" class="form-control" id="utilities-telecom_elements" name="utilities[prvky_telekomunikacii]" value="1.0" required>
+            </div>
+            <div class="col">
+              <label for="utilities-water_network_elements">Water Network Elements</label>
+              <input type="number" class="form-control" id="utilities-water_network_elements" name="utilities[prvky_vodovodnej_siete]" value="1.5" required>
+            </div>
+          </div>
+      
+          <!-- Other Green Areas Group -->
+          <h4>Other Green Areas</h4>
+          <div class="form-row mb-3">
+            <div class="col">
+              <label for="green_areas-trees">Trees</label>
+              <input type="number" class="form-control" id="green_areas-trees" name="other_green_areas[stromy]" value="4.0" required>
+            </div>
+            <div class="col">
+              <label for="green_areas-shrubs">Shrubs</label>
+              <input type="number" class="form-control" id="green_areas-shrubs" name="other_green_areas[kriky]" value="1.0" required>
+            </div>
+            <div class="col">
+              <label for="green_areas-hedges">Hedges</label>
+              <input type="number" class="form-control" id="green_areas-hedges" name="other_green_areas[zive_ploty]" value="1.0" required>
+            </div>
+            <div class="col">
+              <label for="green_areas-tree_groups">Tree Groups</label>
+              <input type="number" class="form-control" id="green_areas-tree_groups" name="other_green_areas[skupiny_stromov]" value="1.0" required>
+            </div>
+            <div class="col">
+              <label for="green_areas-other_green_space">Other Green Space</label>
+              <input type="number" class="form-control" id="green_areas-other_green_space" name="other_green_areas[ina_plocha_zelene]" value="1.0" required>
+            </div>
+          </div>
+      
+          <!-- Roads Group -->
+          <h4>Roads</h4>
+          <div class="form-row mb-3">
+            <div class="col">
+              <label for="roads-roads">Roads</label>
+              <input type="number" class="form-control" id="roads-roads" name="roads[cesty]" value="1.0" required>
+            </div>
+          </div>
+      
+          <!-- Pavements Group -->
+          <h4>Pavements</h4>
+          <div class="form-row mb-3">
+            <div class="col">
+              <label for="pavements-pavements">Pavements</label>
+              <input type="number" class="form-control" id="pavements-pavements" name="pavements[chodniky]" value="1.0" required>
+            </div>
+          </div>
+      
+          <!-- Trees Group -->
+          <h4>Trees</h4>
+          <div class="form-row mb-3">
+            <div class="col">
+              <label for="trees-0_4m">0-4m</label>
+              <input type="number" class="form-control" id="trees-0_4m" name="trees[0_4m]" value="1.0" required>
+            </div>
+            <div class="col">
+              <label for="trees-4_10m">4-10m</label>
+              <input type="number" class="form-control" id="trees-4_10m" name="trees[4_10m]" value="3.0" required>
+            </div>
+            <div class="col">
+              <label for="trees-10_100m">10-100m</label>
+              <input type="number" class="form-control" id="trees-10_100m" name="trees[10_100m]" value="5.0" required>
+            </div>
+          </div>
+      
+          <!-- Submit Button -->
+          <button type="submit" class="btn btn-primary btn-block">Submit</button>
+        </form>
+      
+        <!-- Result Container for JSON Output (optional) -->
+        <div id="result" class="mt-4"></div>
+      </div>
+  
+  <!-- <form 
+    onsubmit="event.preventDefault(); fetchPost()" 
+    class="text-center"
+  >
+    <div class="form-group">
+        <label for="buildings-buffer">Buildings buffer</label>
+        <input type="number" class="form-control" id="buildings-buffer" value=2.0 required> 
+
+        <label for="collectors-buffer">Collectors buffer</label>
+        <input type="number" class="form-control" id="collectors-buffer" value=1.0 required>
+
+        <label for="product-pipeline-buffer">Product pipeline buffer</label>
+        <input type="number" class="form-control" id="product-pipeline-buffer" value=1.0 required>
+
+        <label for="buildings-buffer">Buildings buffer</label>
+        <input type="number" class="form-control" id="buildings-buffer" value=2.0 required>
+    </div>
+    <button type="submit" class="btn btn-primary">Fetch Post</button>
+  </form> -->
+
+  <!-- Result Container -->
+  <div id="result" class="mt-3 text-center"></div>
+</div>
+
+
+<script>
+    async function postData(data) {
+        const url = 'http://127.0.0.1:8000/compute-layers/'
+        try {
+            const response = await fetch(url, {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json"
+                },
+                body: JSON.stringify(data)
+            });
+
+            if (!response.ok) {
+                throw new Error(`HTTP error! Status: ${response.status}`);
+            }
+
+            const result = await response.json();
+            document.getElementById("result").innerText = "Response from FastAPI: " + JSON.stringify(result);
+        } catch (error) {
+            console.error("Error posting data:", error);
+        }
+    }
+
+    document.getElementById("configForm").addEventListener("submit", function(event) {
+        event.preventDefault(); // Prevent the default form submission
+
+        const configData = {
+            buildings: {
+                structures: parseFloat(document.getElementById("buildings-structures").value),
+            },
+            utilities: {
+                collectors: parseFloat(document.getElementById("utilities-collectors").value),
+                product_pipeline: parseFloat(document.getElementById("utilities-product_pipeline").value),
+                pipeline_elements: parseFloat(document.getElementById("utilities-pipeline_elements").value),
+                electricity_elements: parseFloat(document.getElementById("utilities-electricity_elements").value),
+                product_pipeline_elements: parseFloat(document.getElementById("utilities-product_pipeline_elements").value),
+                telecom_elements: parseFloat(document.getElementById("utilities-telecom_elements").value),
+                water_network_elements: parseFloat(document.getElementById("utilities-water_network_elements").value),
+            },
+            other_green_areas: {
+                trees: parseFloat(document.getElementById("green_areas-trees").value),
+                shrubs: parseFloat(document.getElementById("green_areas-shrubs").value),
+                hedges: parseFloat(document.getElementById("green_areas-hedges").value),
+                tree_groups: parseFloat(document.getElementById("green_areas-tree_groups").value),
+                other_green_space: parseFloat(document.getElementById("green_areas-other_green_space").value),
+            },
+            roads: {
+                roads: parseFloat(document.getElementById("roads-roads").value),
+            },
+            pavements: {
+                pavements: parseFloat(document.getElementById("pavements-pavements").value),
+            },
+            trees: {
+                "0_4m": parseFloat(document.getElementById("trees-0_4m").value),
+                "4_10m": parseFloat(document.getElementById("trees-4_10m").value),
+                "10_100m": parseFloat(document.getElementById("trees-10_100m").value),
+            }
+        };
+
+        postData(configData)
+    });
+  </script>
 </body>
 </html>
