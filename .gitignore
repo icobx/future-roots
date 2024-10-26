@@ -7,3 +7,5 @@ data/*
 .github
 .python-version
 venv
+__pycache__
+.vite
