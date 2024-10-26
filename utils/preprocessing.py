@@ -11,3 +11,11 @@ def clip_polygons(gdf_polygons, gdf_clip_mask):
 def remove_unwanted_objects(gdf_objects):
     """Remove unwanted shapely objects from a GDF. We keep only polygons."""
     return gdf_objects[gdf_objects.geometry.apply(lambda x: x.geom_type in ['Polygon', 'MultiPolygon'])]
+
+
+def add_buffer_to_polygon(gdf, buffer):
+    """Add a padding of `buffer` meters to each polygon in the gdf's geometry."""
+    gdf_processed = gdf.to_crs(epsg=3857)
+    gdf_processed['geometry_buffer'] = gdf_processed.geometry.buffer(buffer, cap_style='square')
+    gdf_processed = gdf_processed.set_geometry('geometry_buffer').to_crs(epsg=4326)
+    return gdf_processed
