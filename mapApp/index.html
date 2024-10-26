@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8"/>
+    <link href="https://openlayers.org/favicon.ico" rel="icon" type="image/x-icon"/>
+    <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+    <title>Using OpenLayers with Vite</title>
+</head>
+<body>
+<div id="map"></div>
+<div id="legend">
+    <div class="input-group">
+        <input type="checkbox" id="buildings" name="buildings" value="Buildings" onClick="toggleVisibility(this,'buildings');" checked/>
+        <label for="buildings">Buildings</label>
+    </div>
+    <div class="input-group">
+        <input type="checkbox" id="roads" name="roads" value="Roads" onClick="toggleVisibility(this,'roads');" checked/>
+        <label for="roads">Roads</label>
+    </div>
+    <div class="input-group">
+        <input type="checkbox" id="greenAreas" name="greenAreas" value="Green Areas" onClick="toggleVisibility(this,'greenAreas');" checked/>
+        <label for="greenAreas">Green Areas</label>
+    </div>
+    <div class="input-group">
+        <input type="checkbox" id="utilities" name="utilities" value="Utilities" onClick="toggleVisibility(this,'utilities');" checked/>
+        <label for="utilities">Utilities</label>
+    </div>
+    <div class="input-group">
+        <input type="checkbox" id="result" name="result" value="Result" onClick="toggleVisibility(this,'result');" checked/>
+        <label for="result">Result</label>
+    </div>
+</div>
+<script src="./main.js" type="module"></script>
+</body>
+</html>

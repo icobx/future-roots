@@ -1,6 +1,9 @@
+import pandas as pd
+import geopandas as gpd
+
 padding_config = {
     'buildings': {
-        'buildings': 2.0,
+        'budovy': 2.0,
     },
     'utilities': {
         'kolektory': 1.0,
@@ -10,12 +13,14 @@ padding_config = {
         'prvky_produktovodov': 1.0,
         'prvky_telekomunikacii': 1.0,
         'prvky_vodovodnej_siete': 1.5,
+        'telekomunikacie': 1.5,
+        'vodovody': 2,
     },
     'other_green_areas': {
-        'stromy': 4.0,
-        'kriky': 1.0,
-        'zive_ploty': 1.0,
-        'skupiny_stromov': 1.0,
+        'zahon': 0.01,
+        'kriky': 0.01,
+        'zivy_plot': 0.01,
+        'skupina_stromov': 5.0,
         'ina_plocha_zelene': 1.0,
     },
     'roads': {
@@ -30,7 +35,6 @@ padding_config = {
         '10_100m': 5.0,
     }
 }
-
 # kazda ina siet ma vlastne obmedzenia
 # STN ochranne pasma inzinierskych sieti
 # plynovod teplovod vodovod musia byt dodrzane high priority
