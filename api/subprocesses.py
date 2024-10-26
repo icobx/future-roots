@@ -8,7 +8,7 @@ from .config import PROJECT_ROOT, Status
 async def run_tc_subprocess(filename: str, process_status: dict[tuple[Status | str]]):
     process_status[filename] = (Status.STARTED, '')
 
-    input_path = PROJECT_ROOT / 'data' / 'geojsons' / f'{filename}.geojson'
+    input_path = PROJECT_ROOT / 'data' / 'layers' / f'{filename}.geojson'
 
     if not input_path.exists():
         process_status[filename] = (Status.FAILED, f'Geojson on path {input_path} does not exist.')

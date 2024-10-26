@@ -43,7 +43,7 @@
       
           <!-- Utilities Group -->
           <h4>Utilities</h4>
-          <div class="form-row mb-3">
+          <div class="form-row mb-5">
             <div class="col">
               <label for="utilities-collectors">Collectors</label>
               <input type="number" class="form-control" id="utilities-collectors" name="utilities[kolektory]" value="1.0" required>
@@ -60,6 +60,10 @@
               <label for="utilities-electricity_elements">Electricity Elements</label>
               <input type="number" class="form-control" id="utilities-electricity_elements" name="utilities[prvky_elektriny]" value="1.0" required>
             </div>
+          </div>
+          
+          <!-- Second Row -->
+          <div class="form-row mb-5">
             <div class="col">
               <label for="utilities-product_pipeline_elements">Product Pipeline Elements</label>
               <input type="number" class="form-control" id="utilities-product_pipeline_elements" name="utilities[prvky_produktovodov]" value="1.0" required>
@@ -72,26 +76,34 @@
               <label for="utilities-water_network_elements">Water Network Elements</label>
               <input type="number" class="form-control" id="utilities-water_network_elements" name="utilities[prvky_vodovodnej_siete]" value="1.5" required>
             </div>
+            <div class="col">
+              <label for="utilities-telecommunications">Telecommunications</label>
+              <input type="number" class="form-control" id="utilities-telecommunications" name="utilities[telekomunikacie]" value="1.5" required>
+            </div>
+            <div class="col">
+              <label for="utilities-water_network">Water Network</label>
+              <input type="number" class="form-control" id="utilities-water_network" name="utilities[vodovody]" value="2.0" required>
+            </div>
           </div>
       
           <!-- Other Green Areas Group -->
           <h4>Other Green Areas</h4>
           <div class="form-row mb-3">
             <div class="col">
-              <label for="green_areas-trees">Trees</label>
-              <input type="number" class="form-control" id="green_areas-trees" name="other_green_areas[stromy]" value="4.0" required>
+              <label for="green_areas-flowerbed">Trees</label>
+              <input type="number" class="form-control" id="green_areas-flowerbed" name="other_green_areas[zahon]" value="0.01" required>
             </div>
             <div class="col">
               <label for="green_areas-shrubs">Shrubs</label>
-              <input type="number" class="form-control" id="green_areas-shrubs" name="other_green_areas[kriky]" value="1.0" required>
+              <input type="number" class="form-control" id="green_areas-shrubs" name="other_green_areas[kriky]" value="0.01" required>
             </div>
             <div class="col">
               <label for="green_areas-hedges">Hedges</label>
-              <input type="number" class="form-control" id="green_areas-hedges" name="other_green_areas[zive_ploty]" value="1.0" required>
+              <input type="number" class="form-control" id="green_areas-hedges" name="other_green_areas[zive_ploty]" value="0.01" required>
             </div>
             <div class="col">
               <label for="green_areas-tree_groups">Tree Groups</label>
-              <input type="number" class="form-control" id="green_areas-tree_groups" name="other_green_areas[skupiny_stromov]" value="1.0" required>
+              <input type="number" class="form-control" id="green_areas-tree_groups" name="other_green_areas[skupiny_stromov]" value="5.0" required>
             </div>
             <div class="col">
               <label for="green_areas-other_green_space">Other Green Space</label>
@@ -195,29 +207,31 @@
 
         const configData = {
             buildings: {
-                structures: parseFloat(document.getElementById("buildings-structures").value),
+                budovy: parseFloat(document.getElementById("buildings-structures").value),
             },
             utilities: {
-                collectors: parseFloat(document.getElementById("utilities-collectors").value),
-                product_pipeline: parseFloat(document.getElementById("utilities-product_pipeline").value),
-                pipeline_elements: parseFloat(document.getElementById("utilities-pipeline_elements").value),
-                electricity_elements: parseFloat(document.getElementById("utilities-electricity_elements").value),
-                product_pipeline_elements: parseFloat(document.getElementById("utilities-product_pipeline_elements").value),
-                telecom_elements: parseFloat(document.getElementById("utilities-telecom_elements").value),
-                water_network_elements: parseFloat(document.getElementById("utilities-water_network_elements").value),
+                kolektory: parseFloat(document.getElementById("utilities-collectors").value),
+                produktovod: parseFloat(document.getElementById("utilities-product_pipeline").value),
+                produktovody_prvky: parseFloat(document.getElementById("utilities-pipeline_elements").value),
+                prvky_elektriny: parseFloat(document.getElementById("utilities-electricity_elements").value),
+                prvky_produktovodov: parseFloat(document.getElementById("utilities-product_pipeline_elements").value),
+                prvky_telekomunikacii: parseFloat(document.getElementById("utilities-telecom_elements").value),
+                prvky_vodovodnej_siete: parseFloat(document.getElementById("utilities-water_network_elements").value),
+                telekomunikacie: parseFloat(document.getElementById("utilities-telecommunications").value),
+                vodovody: parseFloat(document.getElementById("utilities-water_network").value),
             },
             other_green_areas: {
-                trees: parseFloat(document.getElementById("green_areas-trees").value),
-                shrubs: parseFloat(document.getElementById("green_areas-shrubs").value),
-                hedges: parseFloat(document.getElementById("green_areas-hedges").value),
-                tree_groups: parseFloat(document.getElementById("green_areas-tree_groups").value),
-                other_green_space: parseFloat(document.getElementById("green_areas-other_green_space").value),
+                zahon: parseFloat(document.getElementById("green_areas-flowerbed").value),
+                kriky: parseFloat(document.getElementById("green_areas-shrubs").value),
+                zivy_plot: parseFloat(document.getElementById("green_areas-hedges").value),
+                skupina_stromov: parseFloat(document.getElementById("green_areas-tree_groups").value),
+                ina_plocha_zelene: parseFloat(document.getElementById("green_areas-other_green_space").value),
             },
             roads: {
-                roads: parseFloat(document.getElementById("roads-roads").value),
+                cesty: parseFloat(document.getElementById("roads-roads").value),
             },
             pavements: {
-                pavements: parseFloat(document.getElementById("pavements-pavements").value),
+                chodniky: parseFloat(document.getElementById("pavements-pavements").value),
             },
             trees: {
                 "0_4m": parseFloat(document.getElementById("trees-0_4m").value),

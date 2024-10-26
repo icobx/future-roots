@@ -1,16 +1,30 @@
 import pandas as pd
 import geopandas as gpd
-import os
+
+from api.config import PROJECT_ROOT, PADDING_CONFIG, MASTER_DATA_FN, LAYERS
+from api.config import Status
 
 
-def overlay_layers(master_data, root, padding_config, layers):
+async def overlay_layers(
+    # master_data: gpd.GeoDataFrame,
+    padding_config: dict[dict[str, float]],
+    # layers: list[tuple[str]],
+    task_id: str,
+    process_status: dict[tuple[Status | str]]
+):
     """Overlay all layers together.
     This function reads a layer, applies row-wise padding, and computes the difference between
     master_data and current layer.
     We iterate over all available layers currently and store just the final result."""
-    for category_name, layer in layers:
-        print(category_name)
-        data = gpd.read_file(os.path.join(root, f'{layer}.geojson'))
+
+    output_path = PROJECT_ROOT / 'data' / 'layers' / f'{task_id}.geojson'
+    master_data = gpd.read_file(PROJECT_ROOT / 'data' / 'processed' / f'{MASTER_DATA_FN}.geojson')
+
+    for category_name, layer in LAYERS:
+        process_status[task_id] = (Status.RUNNING, f'Processing {category_name} layer.')
+
+        file_path = PROJECT_ROOT / 'data' / 'processed' / f'{layer}.geojson'
+        data = gpd.read_file(file_path)
         buffer_df = apply_buffer_from_config(padding_config=padding_config)
         data = add_buffer_column(gdf=data, buffer_df=buffer_df, category_name=category_name, padding_config=padding_config)
         # Switch to 6933 to be able to compute buffers
@@ -22,8 +36,13 @@ def overlay_layers(master_data, root, padding_config, layers):
         master_data = gpd.overlay(df1=master_data, df2=data, how='difference')
         if category_name == 'trees_not_over_utilities':
             master_data = calculate_area_of_polygon_squared_meters(gdf=master_data, name_of_area_column='available_area_utility_trees_gone')
+
+        process_status[task_id] = (Status.RUNNING, f'Processed {category_name} layer.')
+
     master_data = calculate_area_of_polygon_squared_meters(gdf=master_data, name_of_area_column='available_area_utility_trees_intact')
-    return master_data
+
+    process_status[task_id] = (Status.COMPLETED, f'Layers for task {task_id} overlayed.')
+    return output_path
 
 
 def apply_buffer_from_config(padding_config):
@@ -80,3 +99,25 @@ def calculate_area_of_polygon_squared_meters(gdf, name_of_area_column='area'):
     new_crs = gdf.to_crs(epsg=6933)
     gdf[name_of_area_column] = new_crs.area
     return gdf
+
+# layers = [
+#     ('roads', 'roads_ba_ruzinov'),
+#     ('buildings', 'buildings_ruzinov_no_points'),
+#     ('utilities', 'combined_utilities_ba2'),
+#     ('other_green_areas', 'ruzinov_zelenePlochy_ostatne'),
+#     ('pavements', 'ruzinov_pavements'),
+#     ('trees_not_over_utilities', 'trees_not_over_utilities'),
+#     ('trees_over_utilities', 'trees_over_utilities'),
+# ]
+
+# def run_overlay_layers(config: dict):
+#     master_data = gpd.read_file(PROJECT_ROOT / 'data' / 'processed' / f'{MASTER_DATA_FN}.geojson')
+
+#     overlayed_layers = overlay_layers(master_data, config, LAYERS)
+
+#     overlayed_layers.to_file("output.geojson", driver="GeoJSON")
+# def run_overlay_layers_task(config: dict):
+#     pass
+# master_data = gpd.read_file(PROJECT_ROOT / 'data' / 'processed' / 'ruzinov_zelen_in_majetok.geojson')
+
+# print(overlay_layers(master_data, PADDING_CONFIG, layers))

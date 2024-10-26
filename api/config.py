@@ -13,7 +13,7 @@ class Status(Enum):
     COMPLETED = "completed"
     FAILED = "failed"
 
-padding_config = {
+PADDING_CONFIG = {
     'buildings': {
         'budovy': 2.0,
     },
@@ -47,6 +47,18 @@ padding_config = {
         '10_100m': 5.0,
     }
 }
+
+LAYERS = [
+    ('roads', 'roads_ba_ruzinov'),
+    ('buildings', 'buildings_ruzinov_no_points'),
+    ('utilities', 'combined_utilities_ba2'),
+    ('other_green_areas', 'ruzinov_zelenePlochy_ostatne'),
+    ('pavements', 'ruzinov_pavements'),
+    ('trees_not_over_utilities', 'trees_not_over_utilities'),
+    ('trees_over_utilities', 'trees_over_utilities'),
+]
+
+MASTER_DATA_FN = 'ruzinov_zelen_in_majetok'
 # kazda ina siet ma vlastne obmedzenia
 # STN ochranne pasma inzinierskych sieti
 # plynovod teplovod vodovod musia byt dodrzane high priority
