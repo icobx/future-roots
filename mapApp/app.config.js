@@ -35,6 +35,13 @@ export const config = {
             "style": {
                 "stroke-color": "black"
             }
+        },
+        "result": {
+            "path": "http://localhost:8080/data/result",
+            "minZoom": 12,
+            "style": {
+                "fill-color": "rgba(255, 255, 0, 0.9)"
+            }
         }
     }
 }
