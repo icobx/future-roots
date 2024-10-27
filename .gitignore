@@ -8,6 +8,9 @@ data/*
 .github
 .python-version
 venv
+.DS_Store
+api/__pycache__/
 __pycache__
 .vite
 playground/*
+api/__pycache__

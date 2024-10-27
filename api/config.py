@@ -1,7 +1,19 @@
+import pathlib
+
 import pandas as pd
 import geopandas as gpd
 
-padding_config = {
+from enum import Enum
+
+PROJECT_ROOT = pathlib.Path(__file__).resolve().parent.parent
+
+class Status(Enum):
+    STARTED = "started"
+    RUNNING = "running"
+    COMPLETED = "completed"
+    FAILED = "failed"
+
+PADDING_CONFIG = {
     'buildings': {
         'budovy': 2.0,
     },
@@ -35,6 +47,18 @@ padding_config = {
         '10_100m': 5.0,
     }
 }
+
+LAYERS = [
+    ('roads', 'roads_ba_ruzinov'),
+    ('buildings', 'buildings_ruzinov_no_points'),
+    ('utilities', 'combined_utilities_ba2'),
+    ('other_green_areas', 'ruzinov_zelenePlochy_ostatne'),
+    ('pavements', 'ruzinov_pavements'),
+    ('trees_not_over_utilities', 'trees_not_over_utilities'),
+    ('trees_over_utilities', 'trees_over_utilities'),
+]
+
+MASTER_DATA_FN = 'ruzinov_zelen_in_majetok'
 # kazda ina siet ma vlastne obmedzenia
 # STN ochranne pasma inzinierskych sieti
 # plynovod teplovod vodovod musia byt dodrzane high priority
