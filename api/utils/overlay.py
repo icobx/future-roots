@@ -115,7 +115,8 @@ def add_buffer_column(gdf, buffer_df, category_name, padding_config):
         mapping_dict = padding_config[category_name]
         mapping_df = pd.DataFrame.from_dict(mapping_dict, orient='index').reset_index()
         mapping_df = mapping_df.rename({'index': lookup_column, 0: 'buffer'}, axis=1)
-        gdf = pd.merge(left=gdf, right=mapping_df, how='left', on=[lookup_column]).fillna(1.0)
+        gdf = pd.merge(left=gdf, right=mapping_df, how='left', on=[lookup_column])
+        gdf['buffer'] = gdf['buffer'].fillna(1.0)
     return gdf
 
 
