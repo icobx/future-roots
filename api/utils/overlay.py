@@ -65,7 +65,6 @@ async def overlay_layers(
 
     master_data.to_file(output_path, driver="GeoJSON")
     process_status[task_id] = (Status.COMPLETED, f'Layers for task {task_id} overlayed.')
-    # await asyncio.sleep(0.5)
 
     return output_path
 
