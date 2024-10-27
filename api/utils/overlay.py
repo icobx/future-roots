@@ -11,6 +11,7 @@ def overlay_layers(master_data, root, padding_config, layers):
     for category_name, layer in layers:
         print(category_name)
         data = gpd.read_file(os.path.join(root, f'{layer}.geojson'))
+        data = data[~data['geometry'].isnull()]
         buffer_df = apply_buffer_from_config(padding_config=padding_config)
         data = add_buffer_column(gdf=data, buffer_df=buffer_df, category_name=category_name, padding_config=padding_config)
         # Switch to 6933 to be able to compute buffers
