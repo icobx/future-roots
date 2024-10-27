@@ -32,10 +32,10 @@ const map = new Map({
         roadsLayer,
         pavementsLayer,
         propertiesLayer,
-        treesLayer,
         greenAreasLayer,
         utilitiesLayer,
         resultLayer,
+        treesLayer
     ],
     view: new View({
         center: reprojectedCenter,

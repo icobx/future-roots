@@ -25,7 +25,7 @@
       "mbtiles": "utilities.mbtiles"
     },
     "result": {
-      "mbtiles": "roads.mbtiles"
+      "mbtiles": "result.mbtiles"
     }
   }
 }

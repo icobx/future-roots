@@ -41,29 +41,30 @@ export const config = {
             "path": "http://localhost:8080/data/trees",
             "minZoom": 16,
             "style": {
-                'circle-radius': 3,
-                'circle-fill-color': "red",
+                'circle-radius': 4,
+                'circle-fill-color': "brown",
             }
         },
         "greenAreas": {
             "path": "http://localhost:8080/data/greenAreas",
             "minZoom": 14,
             "style": {
-                "fill-color": "rgba(0, 124, 0, 0.5)"
+                "fill-color": "rgba(99, 220, 87, 0.5)"
             }
         },
         "utilities": {
             "path": "http://localhost:8080/data/utilities",
             "minZoom": 15,
             "style": {
-                "stroke-color": "black"
+                "stroke-color": "rgba(214, 41, 195, 1.)"
             }
         },
         "result": {
             "path": "http://localhost:8080/data/result",
             "minZoom": 12,
             "style": {
-                "fill-color": "rgba(255, 255, 0, 0.9)"
+                "stroke-color": "green",
+                "fill-color": "rgba(68, 149, 60, 0.9)"
             }
         }
     }
