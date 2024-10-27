@@ -11,6 +11,7 @@ def overlay_layers(master_data, root, padding_config, layers):
     for category_name, layer in layers:
         print(category_name)
         data = gpd.read_file(os.path.join(root, f'{layer}.geojson'))
+        data = data[~data['geometry'].isnull()]
         buffer_df = apply_buffer_from_config(padding_config=padding_config)
         data = add_buffer_column(gdf=data, buffer_df=buffer_df, category_name=category_name, padding_config=padding_config)
         # Switch to 6933 to be able to compute buffers
@@ -23,7 +24,7 @@ def overlay_layers(master_data, root, padding_config, layers):
         if category_name == 'trees_not_over_utilities':
             master_data = calculate_area_of_polygon_squared_meters(gdf=master_data, name_of_area_column='available_area_utility_trees_gone')
     master_data = calculate_area_of_polygon_squared_meters(gdf=master_data, name_of_area_column='available_area_utility_trees_intact')
-    return master_data
+    return master_data[['geometry', 'available_area_utility_trees_gone', 'available_area_utility_trees_intact']]
 
 
 def apply_buffer_from_config(padding_config):
@@ -72,7 +73,8 @@ def add_buffer_column(gdf, buffer_df, category_name, padding_config):
         mapping_dict = padding_config[category_name]
         mapping_df = pd.DataFrame.from_dict(mapping_dict, orient='index').reset_index()
         mapping_df = mapping_df.rename({'index': lookup_column, 0: 'buffer'}, axis=1)
-        gdf = pd.merge(left=gdf, right=mapping_df, how='left', on=[lookup_column]).fillna(1.0)
+        gdf = pd.merge(left=gdf, right=mapping_df, how='left', on=[lookup_column])
+        gdf['buffer'] = gdf['buffer'].fillna(1.0)
     return gdf
 
 
