@@ -32,7 +32,7 @@ async def create_item(request: Request, background_tasks: BackgroundTasks):
 
     # overlay_coroutine = asyncio.to_thread(overlay_layers, pad_config, task_id, process_status)
     # await asyncio.create_task(overlay_layers(pad_config, task_id, process_status))
-    # background_tasks.add_task(overlay_coroutine, pad_config, task_id, process_status)
+    background_tasks.add_task(overlay_layers, pad_config, task_id, process_status)
     # background_tasks.add_task(run_tc_subprocess, 'parcels_c_ruzinov', process_status)
     
     return {"computation_task_id": task_id, "status": "Computation task started."}
