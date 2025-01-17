@@ -4,7 +4,7 @@ import geopandas as gpd
 def clip_polygons(gdf_polygons, gdf_clip_mask):
     """Perform spatial join between polygon data and clipping mask."""
     gdf_polygons = gdf_polygons.to_crs(epsg=4326)
-    gdf_intersection = gpd.sjoin(left_df=gdf_polygons, right_df=gdf_clip_mask, how='inner')
+    gdf_intersection = gpd.sjoin(left_df=gdf_polygons, right_df=gdf_clip_mask, how='inner', predicate='within')
     return gdf_intersection
 
 

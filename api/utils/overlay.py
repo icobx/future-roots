@@ -15,7 +15,7 @@ def overlay_layers(master_data, root, padding_config, layers):
         buffer_df = apply_buffer_from_config(padding_config=padding_config)
         data = add_buffer_column(gdf=data, buffer_df=buffer_df, category_name=category_name, padding_config=padding_config)
         # Switch to 6933 to be able to compute buffers
-        data = data.to_crs(epsg=6933)
+        data = data.to_crs(epsg=3587)
         data['geometry'] = data.apply(lambda row: row.geometry.buffer(row['buffer']), axis=1)
         # Switch back to the right EPSG
         data = data.to_crs(epsg=4326)
